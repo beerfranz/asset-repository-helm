@@ -1,0 +1,9 @@
+image:
+  repo: 
+  tag: 
+
+  image:
+    repository: "ghcr.io/beerfranz/asset-repository-kube-exporter"
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "0.0.2-4"
