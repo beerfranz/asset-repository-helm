@@ -1,0 +1,15 @@
+dependencies:
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  version: 2.2.1
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami/
+  version: 12.5.5
+- name: asset-repository-file-exporter
+  repository: file://../asset-repository-file-exporter
+  version: 0.0.1
+- name: asset-repository-kube-exporter
+  repository: file://../asset-repository-kube-exporter
+  version: 0.0.1
+digest: sha256:9d081f0c5fcd7f2dafadd4529a6e679bb0b9b498e2240962b19c69d7358e91c9
+generated: "2023-06-10T01:21:38.32047423+02:00"

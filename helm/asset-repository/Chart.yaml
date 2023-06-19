@@ -38,5 +38,6 @@ dependencies:
   #   condition: file-exporter.enabled
   # - name: asset-repository-kube-exporter
   #   repository: https://beerfranz.github.io/asset-repository-helm
+  #   version: 0.0.1
   #   alias: kube-exporter
   #   condition: kube-exporter.enabled

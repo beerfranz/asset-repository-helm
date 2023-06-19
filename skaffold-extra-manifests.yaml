@@ -14,3 +14,30 @@ data:
   password: "YXBwUGFzc3dvcmQK" # appPassword
   php-app-secret: "YXBwLXNlY3JldAo=" # app-secret
   mercure-jwt-secret: "bWVyY3VyZS1qd3Qtc2VjcmV0Cg==" # mercure-jwt-secret
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app-nginx-1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-app-nginx-1
+  template:
+    metadata:
+      labels:
+        app: test-app-nginx-1
+        asset-repository/export: kube-exporter
+      annotations:
+        asset-repository/container-instances: nginx
+        asset-repository/asset.identifier: front
+        asset-repository/version: "1.0"
+    spec:
+      containers:
+      - image: nginx:stable-alpine3.17-slim
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http
