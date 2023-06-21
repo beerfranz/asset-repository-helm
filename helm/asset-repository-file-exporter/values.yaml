@@ -1,0 +1,27 @@
+enabled: true
+
+configmap:
+  data: {}
+
+assetRepository:
+  url: http://asset-repository
+
+image:
+  repository: "ghcr.io/beerfranz/asset-repository-file-exporter"
+  pullPolicy: IfNotPresent
+  tag: "0.0.2-4"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

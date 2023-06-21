@@ -1,0 +1,19 @@
+configmap:
+  data:
+    asset.yml: |
+      request:
+        method: PUT
+        path: /sources/file_assets/assets
+
+      data:
+        owner:
+          identifier: DSI
+        assets:
+          - identifier: postgres
+            version: 13-alpine
+            kind:
+              identifier: database
+          - identifier: test-app
+            version: stable-alpine3.18-slim
+            kind:
+              identifier: app

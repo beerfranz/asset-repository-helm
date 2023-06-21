@@ -32,8 +32,7 @@ spec:
         asset-repository/export: kube-exporter
       annotations:
         asset-repository/container-instances: nginx
-        asset-repository/asset.identifier: front
-        asset-repository/version: "1.0"
+        asset-repository/asset.identifier.nginx: test-app
     spec:
       containers:
       - image: nginx:stable-alpine3.17-slim

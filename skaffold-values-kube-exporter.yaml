@@ -1,28 +1,3 @@
-php:
-  image:
-    pullPolicy: "IfNotPresent"
-caddy:
-  image:
-    pullPolicy: "IfNotPresent"
-ingress:
-  enabled: true
-  hosts:
-  - hostname: app.local
-    paths:
-    - path: '/'
-      port: http
-  annotations: 
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 
-existingSecret: "my-existing-secret"
-postgresql:
-  auth:
-    existingSecret: "my-existing-secret"
-    username: app
-    database: api
-
-file-exporter:
-  enabled: true
-
-kube-exporter:
-  enabled: true
+image:
+  pullPolicy: "IfNotPresent"
