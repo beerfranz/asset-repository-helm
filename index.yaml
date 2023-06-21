@@ -20,7 +20,38 @@ entries:
     urls:
     - https://github.com/beerfranz/asset-repository-helm/releases/download/asset-repository-0.0.3-0/asset-repository-0.0.3-0.tgz
     version: 0.0.3-0
+  asset-repository-file-exporter:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-06-21T10:56:19.154904841Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.2.1
+    description: Asset database
+    digest: e05c265d99dc3e0b3a7d66c4465bc671ad85d98b84507b6860f74a23658adc53
+    home: https://github.com/beerfranz/asset-repository-helm
+    name: asset-repository-file-exporter
+    type: application
+    urls:
+    - https://github.com/beerfranz/asset-repository-helm/releases/download/asset-repository-file-exporter-0.0.1/asset-repository-file-exporter-0.0.1.tgz
+    version: 0.0.1
   asset-repository-kube-exporter:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-06-21T10:56:19.28299444Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.2.1
+    description: Asset database
+    digest: 8f86da1efbcddee59ec4d2ad6e48af96a86b51c6b3b53b05db58d164dd26c6ab
+    home: https://github.com/beerfranz/asset-repository-helm
+    name: asset-repository-kube-exporter
+    type: application
+    urls:
+    - https://github.com/beerfranz/asset-repository-helm/releases/download/asset-repository-kube-exporter-0.0.3-1/asset-repository-kube-exporter-0.0.3-1.tgz
+    version: 0.0.3-1
   - apiVersion: v2
     appVersion: 0.0.1
     created: "2023-06-19T18:30:51.718409443Z"
@@ -36,4 +67,4 @@ entries:
     urls:
     - https://github.com/beerfranz/asset-repository-helm/releases/download/asset-repository-kube-exporter-0.0.3-0/asset-repository-kube-exporter-0.0.3-0.tgz
     version: 0.0.3-0
-generated: "2023-06-19T18:30:51.718425443Z"
+generated: "2023-06-21T10:56:19.28300834Z"
