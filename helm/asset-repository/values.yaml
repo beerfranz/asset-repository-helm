@@ -162,3 +162,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+kube-exporter:
+  enabled: false
+
+file-exporter:
+  enabled: false

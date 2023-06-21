@@ -21,8 +21,8 @@ postgresql:
     username: app
     database: api
 
-file-exporter:
-  enabled: true
+# file-exporter:
+#   enabled: true
 
-kube-exporter:
-  enabled: true
+# kube-exporter:
+#   enabled: true
