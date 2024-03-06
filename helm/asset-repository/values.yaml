@@ -162,3 +162,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+extraManifests: []
