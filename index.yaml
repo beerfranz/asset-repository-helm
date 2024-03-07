@@ -3,6 +3,25 @@ entries:
   asset-repository:
   - apiVersion: v2
     appVersion: 0.0.2-3
+    created: "2024-03-07T15:09:46.528625323Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.2.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.5.5
+    description: Asset database
+    digest: 6f61529700189fe5ad2cff0e5d0146265c5df2b2a0be94496e9e0c9432032c71
+    home: https://github.com/beerfranz/asset-repository-helm
+    name: asset-repository
+    type: application
+    urls:
+    - https://github.com/beerfranz/asset-repository-helm/releases/download/asset-repository-0.0.5-1/asset-repository-0.0.5-1.tgz
+    version: 0.0.5-1
+  - apiVersion: v2
+    appVersion: 0.0.2-3
     created: "2024-03-06T17:30:03.281029532Z"
     dependencies:
     - name: common
@@ -105,4 +124,4 @@ entries:
     urls:
     - https://github.com/beerfranz/asset-repository-helm/releases/download/asset-repository-kube-exporter-0.0.3-0/asset-repository-kube-exporter-0.0.3-0.tgz
     version: 0.0.3-0
-generated: "2024-03-06T17:30:03.281050442Z"
+generated: "2024-03-07T15:09:46.528642505Z"
