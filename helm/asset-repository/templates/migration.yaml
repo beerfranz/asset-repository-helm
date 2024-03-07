@@ -1,0 +1,96 @@
+{{- if .Values.migration.enabled }}
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration
+  annotations:
+    {{- with .Values.migration.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: migration
+        {{- include "common.labels.matchLabels" . | nindent 8 }}
+      annotations:
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "api-platform.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: OnFailure
+      containers:
+        - name: {{ .Chart.Name }}-php
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.php.image.repository }}:{{ .Values.php.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.php.image.pullPolicy }}
+          command: {{- include "common.tplvalues.render" (dict "value" .Values.migration.command "context" $) | nindent 12 }}
+          args: {{- include "common.tplvalues.render" (dict "value" .Values.migration.args "context" $) | nindent 12 }}
+          env:
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "common.names.fullname" . }}
+                  key: php-app-env
+            - name: APP_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "common.names.fullname" . }}
+                  key: php-app-debug
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "common.secrets.name" (dict "existingSecret" .Values.existingSecret "context" $) }}
+                  key: php-app-secret
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "common.secrets.name" (dict "existingSecret" .Values.existingSecret "context" $) }}
+                  key: database-url
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "/bin/sleep 1; kill -QUIT 1"]
+          startupProbe:
+            exec:
+              command:
+                - docker-healthcheck
+            failureThreshold: 40
+            periodSeconds: 3
+          readinessProbe:
+            exec:
+              command:
+                - docker-healthcheck
+            periodSeconds: 3
+          livenessProbe:
+            exec:
+              command:
+                - docker-healthcheck
+            periodSeconds: 3
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+{{- end }}
