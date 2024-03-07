@@ -26,6 +26,19 @@ php:
 
 existingSecret: ""
 
+migration:
+  enabled: false
+  command: [ "/bin/ash", "-c" ]
+  # Migration command arguments.
+  #  use doctrine migrations (prod): ["php", "bin/console", "doctrine:migrations:migrate", "--no-interaction"]
+  #  use doctrine schema sync (test): ["php", "bin/console", "doctrine:schema:update", "--force"]
+  args: ["php", "bin/console", "doctrine:schema:update", "--force"]
+
+  # Migration annotations. Configured for ArgoCD
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+
 caddy:
   image:
     repository: "ghcr.io/beerfranz/asset-repository-caddy"
