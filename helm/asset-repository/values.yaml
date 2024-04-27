@@ -7,7 +7,7 @@ php:
     repository: "ghcr.io/beerfranz/asset-repository-php"
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "0.0.2-4"
+    tag: "0.0.5-0"
   appEnv: prod
   appDebug: "0"
   appSecret: ""
@@ -27,7 +27,7 @@ php:
 existingSecret: ""
 
 migration:
-  enabled: false
+  enabled: true
   command: [ "php", "bin/console" ]
   # Migration command arguments.
   #  use doctrine migrations (prod): ["doctrine:migrations:migrate", "--no-interaction"]
@@ -175,5 +175,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+worker:
+  enabled: true
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
 
 extraManifests: []
