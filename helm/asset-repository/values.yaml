@@ -27,7 +27,7 @@ php:
 existingSecret: ""
 
 migration:
-  enabled: false
+  enabled: true
   command: [ "php", "bin/console" ]
   # Migration command arguments.
   #  use doctrine migrations (prod): ["doctrine:migrations:migrate", "--no-interaction"]
